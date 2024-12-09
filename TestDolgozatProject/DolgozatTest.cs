@@ -2,7 +2,9 @@ using DolgozatProject;
 
 namespace TestDolgozatProject
 {
-	public class Tests
+	[TestFixture]
+	[Category("PontFelvesz")]
+	public class PontFelveszTests
 	{
 		public Dolgozat dolgozat;
 
@@ -13,25 +15,38 @@ namespace TestDolgozatProject
 		}
 
 		[Test]
-		public void PontFelvesz_HelyesAdat_NemDobArgumentExceptiont()
+		public void HelyesAdat_NemDobArgumentExceptiont()
 		{
 			Assert.DoesNotThrow(() => dolgozat.PontFelvesz(10));
 		}
 
 		[Test]
-		public void PontFelvesz_TulNagyAdat_ArgumentExceptiontDob()
+		public void TulNagyAdat_ArgumentExceptiontDob()
 		{
 			Assert.Throws<ArgumentException>(() => dolgozat.PontFelvesz(101));
 		}
 
 		[Test]
-		public void PontFelvesz_TulKicsiAdat_ArgumentExceptiontDob()
+		public void TulKicsiAdat_ArgumentExceptiontDob()
 		{
 			Assert.Throws<ArgumentException>(() => dolgozat.PontFelvesz(-2));
 		}
+	}
+
+	[TestFixture]
+	[Category("MindenkiMegirta")]
+	public class MindenkiMegirtaTests
+	{
+		public Dolgozat dolgozat;
+
+		[SetUp]
+		public void Setup()
+		{
+			dolgozat = new Dolgozat();
+		}
 
 		[Test]
-		public void MindenkiMegirta_MindenkiIgen_HelyesenMukodik()
+		public void MindenkiIgen_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(10);
 			dolgozat.PontFelvesz(20);
@@ -40,7 +55,7 @@ namespace TestDolgozatProject
 		}
 
 		[Test]
-		public void MindenkiMegirta_NemMindenki_HelyesenMukodik()
+		public void NemMindenki_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(10);
 			dolgozat.PontFelvesz(-1);
@@ -50,139 +65,231 @@ namespace TestDolgozatProject
 		}
 
 		[Test]
-		public void MindenkiMegirta_UresLista_HelyesenMukodik()
+		public void UresLista_HelyesenMukodik()
 		{
 			Assert.IsTrue(dolgozat.MindenkiMegirta());
 		}
+	}
+
+	[TestFixture]
+	[Category("Bukas")]
+	public class BukasTests
+	{
+		public Dolgozat dolgozat;
+
+		[SetUp]
+		public void Setup()
+		{
+			dolgozat = new Dolgozat();
+		}
 
 		[Test]
-		public void Bukas_UresLista_HelyesenMukodik()
+		public void UresLista_HelyesenMukodik()
 		{
 			Assert.That(dolgozat.Bukas, Is.EqualTo(0));
 		}
 
 		[Test]
-		public void Bukas_EgyBukas_HelyesenMukodik()
+		public void EgyBukas_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(10);
 			Assert.That(dolgozat.Bukas, Is.EqualTo(1));
 		}
-
+		
 		[Test]
-		public void Bukas_EgyJeles_HelyesenMukodik()
+		public void EgyJeles_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(90);
 			Assert.That(dolgozat.Bukas, Is.EqualTo(0));
 		}
+	}
+
+	[TestFixture]
+	[Category("Elegseges")]
+	public class ElegsegesTests
+	{
+		public Dolgozat dolgozat;
+
+		[SetUp]
+		public void Setup()
+		{
+			dolgozat = new Dolgozat();
+		}
 
 		[Test]
-		public void Elegseges_UresLista_HelyesenMukodik()
+		public void UresLista_HelyesenMukodik()
 		{
 			Assert.That(dolgozat.Elegseges, Is.EqualTo(0));
 		}
 
 		[Test]
-		public void Elegseges_EgyElegseges_HelyesenMukodik()
+		public void EgyElegseges_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(55);
 			Assert.That(dolgozat.Elegseges, Is.EqualTo(1));
 		}
 
 		[Test]
-		public void Elegseges_EgyJeles_HelyesenMukodik()
+		public void EgyJeles_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(90);
 			Assert.That(dolgozat.Elegseges, Is.EqualTo(0));
 		}
+	}
+
+	[TestFixture]
+	[Category("Kozepes")]
+	public class KozepesTests
+	{
+		public Dolgozat dolgozat;
+
+		[SetUp]
+		public void Setup()
+		{
+			dolgozat = new Dolgozat();
+		}
 
 		[Test]
-		public void Kozepes_UresLista_HelyesenMukodik()
+		public void UresLista_HelyesenMukodik()
 		{
 			Assert.That(dolgozat.Kozepes, Is.EqualTo(0));
 		}
 
 		[Test]
-		public void Kozepes_EgyKozepes_HelyesenMukodik()
+		public void EgyKozepes_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(65);
 			Assert.That(dolgozat.Kozepes, Is.EqualTo(1));
 		}
 
 		[Test]
-		public void Kozepes_EgyJeles_HelyesenMukodik()
+		public void EgyJeles_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(90);
 			Assert.That(dolgozat.Kozepes, Is.EqualTo(0));
 		}
+	}
+
+	[TestFixture]
+	[Category("Jo")]
+	public class JoTests
+	{
+		public Dolgozat dolgozat;
+
+		[SetUp]
+		public void Setup()
+		{
+			dolgozat = new Dolgozat();
+		}
 
 		[Test]
-		public void Jo_UresLista_HelyesenMukodik()
+		public void UresLista_HelyesenMukodik()
 		{
 			Assert.That(dolgozat.Jo, Is.EqualTo(0));
 		}
 
 		[Test]
-		public void Jo_EgyJo_HelyesenMukodik()
+		public void EgyJo_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(75);
 			Assert.That(dolgozat.Jo, Is.EqualTo(1));
 		}
 
 		[Test]
-		public void Jo_EgyJeles_HelyesenMukodik()
+		public void EgyJeles_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(90);
 			Assert.That(dolgozat.Jo, Is.EqualTo(0));
 		}
+	}
+
+	[TestFixture]
+	[Category("Jeles")]
+	public class JelesTests
+	{
+		public Dolgozat dolgozat;
+
+		[SetUp]
+		public void Setup()
+		{
+			dolgozat = new Dolgozat();
+		}
 
 		[Test]
-		public void Jeles_UresLista_HelyesenMukodik()
+		public void UresLista_HelyesenMukodik()
 		{
 			Assert.That(dolgozat.Jeles, Is.EqualTo(0));
 		}
 
 		[Test]
-		public void Jeles_EgyJeles_HelyesenMukodik()
+		public void EgyJeles_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(90);
 			Assert.That(dolgozat.Jeles, Is.EqualTo(1));
 		}
 
 		[Test]
-		public void Jeles_EgyBukas_HelyesenMukodik()
+		public void EgyBukas_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(10);
 			Assert.That(dolgozat.Jeles, Is.EqualTo(0));
 		}
+	}
+
+	[TestFixture]
+	[Category("Gyanus")]
+	public class GyanusTests
+	{
+		public Dolgozat dolgozat;
+
+		[SetUp]
+		public void Setup()
+		{
+			dolgozat = new Dolgozat();
+		}
 
 		[Test]
-		public void Gyanus_NegativKivalok_ArgumentExceptiontDob()
+		public void NegativKivalok_ArgumentExceptiontDob()
 		{
 			Assert.Throws<ArgumentException>(() => dolgozat.Gyanus(-1));
 		}
 
 		[Test]
-		public void Gyanus_NincsGyanus_HelyesenMukodik()
+		public void NincsGyanus_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(90);
 			Assert.IsFalse(dolgozat.Gyanus(1));
 		}
 
 		[Test]
-		public void Gyanus_VanGyanus_HelyesenMukodik()
+		public void VanGyanus_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(90);
 			Assert.IsTrue(dolgozat.Gyanus(0));
+
+		}
+	}
+
+	[TestFixture]
+	[Category("Ervenytelen")]
+	public class ErvenytelenTests
+	{
+		Dolgozat dolgozat;
+
+		[SetUp]
+		public void Setup()
+		{
+			dolgozat = new Dolgozat();
 		}
 
 		[Test]
-		public void Ervenytelen_UresLista_HelyesenMukodik()
+		public void UresLista_HelyesenMukodik()
 		{
 			Assert.IsTrue(dolgozat.Ervenytelen);
 		}
 
 		[Test]
-		public void Ervenytelen_VanErvenytelen_HelyesenMukodik()
+		public void ErvenytelenDolgozat_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(-1);
 			dolgozat.PontFelvesz(-1);
@@ -192,10 +299,11 @@ namespace TestDolgozatProject
 		}
 
 		[Test]
-		public void Ervenytelen_NincsErvenytelen_HelyesenMukodik()
+		public void ErvenyesDolgozat_HelyesenMukodik()
 		{
 			dolgozat.PontFelvesz(10);
 			dolgozat.PontFelvesz(20);
+			dolgozat.PontFelvesz(-1);
 
 			Assert.IsFalse(dolgozat.Ervenytelen);
 		}

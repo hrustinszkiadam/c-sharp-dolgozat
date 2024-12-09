@@ -67,7 +67,7 @@
 		{
 			get
 			{
-				return pontok.Count(x => x == -1) >= pontok.Count / 2;
+				return pontok.Count(x => x == -1) >= pontok.Count / 2.0;
 			}
 		}
 	}
