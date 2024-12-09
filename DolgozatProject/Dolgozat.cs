@@ -20,55 +20,31 @@
 			return !pontok.Contains(-1);
 		}
 
-		public int Bukas
-		{
-			get
-			{
-				return pontok.Count(x=> x != -1 && x < 50);
-			}
-		}
-		public int Elegseges
-		{
-			get
-			{
-				return pontok.Count(x => x >= 50 && x <= 60);
-			}
-		}
-		public int Kozepes
-		{
-			get
-			{
-				return pontok.Count(x => x >= 61 && x <= 70);
-			}
-		}
-		public int Jo
-		{
-			get
-			{
-				return pontok.Count(x => x >= 71 && x <= 80);
-			}
-		}
-		public int Jeles
-		{
-			get
-			{
-				return pontok.Count(x => x >= 81);
-			}
-		}
-
 		public bool Gyanus(int kivalok)
 		{
-			if(kivalok < 0) throw new ArgumentException("A kiválók számának minimum 0-nak kell lennie!", nameof(kivalok));
+			if (kivalok < 0) throw new ArgumentException("A kiválók számának minimum 0-nak kell lennie!", nameof(kivalok));
 
 			return kivalok < Jeles;
 		}
 
-		public bool Ervenytelen
-		{
-			get
-			{
-				return pontok.Count(x => x == -1) >= pontok.Count / 2.0;
-			}
+		public int Bukas {
+			get => pontok.Count(x => x != -1 && x < 50);
+		}
+		public int Elegseges {
+			get => pontok.Count(x => x >= 50 && x <= 60);
+		}
+		public int Kozepes {
+			get => pontok.Count(x => x >= 61 && x <= 70);
+		}
+		public int Jo {
+			get => pontok.Count(x => x >= 71 && x <= 80);
+		}
+		public int Jeles {
+			get => pontok.Count(x => x >= 81);
+		}
+
+		public bool Ervenytelen {
+			get => pontok.Count(x => x == -1) >= pontok.Count / 2.0;
 		}
 	}
 }
